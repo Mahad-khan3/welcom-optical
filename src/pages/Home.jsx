@@ -1,5 +1,4 @@
 import PortalHero from '../components/PortalHero'
-import PinnedHero from '../components/PinnedHero'
 import ProductShowcase from '../components/ProductShowcase'
 import BannerSection from '../components/BannerSection'
 import HorizontalScrollGallery from '../components/HorizontalScrollGallery'
@@ -12,9 +11,6 @@ export default function Home() {
     <>
       {/* ---------- PORTAL HERO ---------- */}
       <PortalHero />
-
-      {/* ---------- PINNED ZOOM HERO (GSAP + Three.js) ---------- */}
-      <PinnedHero />
 
       {/* ---------- TRY YOUR FRAME ---------- */}
       <ProductShowcase />

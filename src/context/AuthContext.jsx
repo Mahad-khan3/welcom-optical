@@ -1,17 +1,18 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import api from '../services/api'
+import { safeGet, safeRemove, safeSet } from '../utils/storage'
 
 const AuthContext = createContext(null)
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(() => {
     try {
-      return JSON.parse(localStorage.getItem('user')) || null
+      return JSON.parse(safeGet('user')) || null
     } catch {
       return null
     }
   })
-  const [token, setToken] = useState(() => localStorage.getItem('token') || null)
+  const [token, setToken] = useState(() => safeGet('token') || null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -25,7 +26,7 @@ export function AuthProvider({ children }) {
       .then((res) => {
         if (active) {
           setUser(res.data.user)
-          localStorage.setItem('user', JSON.stringify(res.data.user))
+          safeSet('user', JSON.stringify(res.data.user))
         }
       })
       .catch(() => {
@@ -39,8 +40,8 @@ export function AuthProvider({ children }) {
 
   const login = async (email, password) => {
     const { data } = await api.post('/auth/login', { email, password })
-    localStorage.setItem('token', data.token)
-    localStorage.setItem('user', JSON.stringify(data.user))
+    safeSet('token', data.token)
+    safeSet('user', JSON.stringify(data.user))
     setToken(data.token)
     setUser(data.user)
     return data.user
@@ -48,16 +49,16 @@ export function AuthProvider({ children }) {
 
   const register = async (name, email, password) => {
     const { data } = await api.post('/auth/register', { name, email, password })
-    localStorage.setItem('token', data.token)
-    localStorage.setItem('user', JSON.stringify(data.user))
+    safeSet('token', data.token)
+    safeSet('user', JSON.stringify(data.user))
     setToken(data.token)
     setUser(data.user)
     return data.user
   }
 
   const logout = () => {
-    localStorage.removeItem('token')
-    localStorage.removeItem('user')
+    safeRemove('token')
+    safeRemove('user')
     setToken(null)
     setUser(null)
   }
@@ -71,7 +72,7 @@ export function AuthProvider({ children }) {
   const updateProfile = async (payload) => {
     const { data } = await api.put('/auth/profile', payload)
     setUser(data.user)
-    localStorage.setItem('user', JSON.stringify(data.user))
+    safeSet('user', JSON.stringify(data.user))
     return data.user
   }
 

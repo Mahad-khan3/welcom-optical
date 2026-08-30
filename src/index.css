@@ -6456,13 +6456,12 @@ body.parelex-nav .nd-header {
   inset: 0;
 }
 
-/* next section overlaps the pinned hero by one viewport so it can be
-   revealed from the bottom during the full-page slide */
+/* ProductShowcase stacks normally below the hero (pinned-hero slide removed) */
 .ps-root {
   position: relative;
   z-index: 2;
   background: var(--bg);
-  margin-top: -100vh;
+  margin-top: 0;
 }
 
 /* ---------- ambient animated background (subtle, theme-aware) ---------- */

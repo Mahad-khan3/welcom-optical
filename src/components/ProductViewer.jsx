@@ -10,6 +10,18 @@ export const FRAME_COLORS = [
   { name: 'Tortoise', hex: '#6b4226' },
 ]
 
+function webglSupported() {
+  try {
+    const c = document.createElement('canvas')
+    return !!(
+      window.WebGLRenderingContext &&
+      (c.getContext('webgl2') || c.getContext('webgl'))
+    )
+  } catch {
+    return false
+  }
+}
+
 // ---------------------------------------------------------------
 // Procedural glasses built from Three.js primitives (fallback + default)
 // ---------------------------------------------------------------
@@ -140,6 +152,38 @@ export default function ProductViewer({
   className = '',
 }) {
   const [spin, setSpin] = useState(autoRotate)
+  const [glOk] = useState(() => webglSupported())
+
+  if (!glOk) {
+    return (
+      <div
+        className={`product-viewer ${className}`}
+        style={{
+          height,
+          position: 'relative',
+          display: 'grid',
+          placeItems: 'center',
+          minHeight: 220,
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 8,
+            color: 'var(--text)',
+            opacity: 0.55,
+            fontSize: 13,
+            fontWeight: 600,
+          }}
+        >
+          <Rotate3d size={18} />
+          <span>3D viewer requires WebGL</span>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className={`product-viewer ${className}`} style={{ height, position: 'relative' }}>

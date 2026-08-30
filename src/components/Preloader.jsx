@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { safeGet, safeSet } from '../utils/storage'
 
 import photoSun from '../assets/images/sun glasses.jpg'
 import photoHero from '../assets/images/1hero.jpg'
@@ -13,6 +14,7 @@ const SHIFT_AT = 2300
 const PHOTO_SWAP_MS = 250
 const PHOTO_KEEP_LAST_MS = 500
 const FADE_MS = 600
+const MAX_MS = 7000
 const KEY = 'welcom_preloader_seen'
 
 function Preloader({ onDone }) {
@@ -27,7 +29,7 @@ function Preloader({ onDone }) {
 
   useEffect(() => {
     const path = window.location.pathname
-    const seen = localStorage.getItem(KEY)
+    const seen = safeGet(KEY)
     const shouldPlay = !seen || path === '/'
     if (!shouldPlay) {
       onDoneRef.current?.()
@@ -36,6 +38,14 @@ function Preloader({ onDone }) {
     }
     setVisible(true)
   }, [])
+
+  const finish = () => {
+    clearInterval(intervalRef.current)
+    safeSet(KEY, '1')
+    document.body.style.overflow = ''
+    setGone(true)
+    onDoneRef.current?.()
+  }
 
   useEffect(() => {
     if (visible !== true) return
@@ -57,11 +67,13 @@ function Preloader({ onDone }) {
         })
       }, PHOTO_SWAP_MS)
     }, SHIFT_AT)
+    const safetyT = setTimeout(finish, MAX_MS)
 
     return () => {
       clearTimeout(lineT)
       clearTimeout(rotT)
       clearTimeout(shiftT)
+      clearTimeout(safetyT)
       clearInterval(intervalRef.current)
       document.body.style.overflow = ''
     }
@@ -69,12 +81,7 @@ function Preloader({ onDone }) {
 
   useEffect(() => {
     if (!fading) return
-    const t = setTimeout(() => {
-      setGone(true)
-      localStorage.setItem(KEY, '1')
-      document.body.style.overflow = ''
-      onDoneRef.current?.()
-    }, FADE_MS)
+    const t = setTimeout(finish, FADE_MS)
     return () => clearTimeout(t)
   }, [fading])
 
