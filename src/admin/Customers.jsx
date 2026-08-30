@@ -88,7 +88,7 @@ export default function Customers() {
                   </td>
                   <td>{u.email}</td>
                   <td>
-                    <span className="pill" style={u.role === 'admin' ? { background: 'var(--accent-soft)', color: 'var(--accent-text)', borderColor: 'rgba(224,71,42,0.3)' } : {}}>
+                    <span className="pill" style={u.role === 'admin' ? { background: 'var(--accent-soft)', color: 'var(--accent-text)', borderColor: 'rgba(var(--accent-rgb), 0.3)' } : {}}>
                       {u.role}
                     </span>
                   </td>

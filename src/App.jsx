@@ -10,6 +10,7 @@ import CartDrawer from './components/CartDrawer'
 import Loading from './components/Loading'
 import Preloader from './components/Preloader'
 import ErrorBoundary from './components/ErrorBoundary'
+import SmoothScroll from './components/SmoothScroll'
 import { ToastProvider } from './components/Toast'
 
 import Home from './pages/Home'
@@ -138,6 +139,7 @@ export default function App() {
             future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
           >
             <ScrollToTop />
+            <SmoothScroll />
             <ToastProvider>
               <main>
               <Preloader onDone={() => setLoading(false)} />

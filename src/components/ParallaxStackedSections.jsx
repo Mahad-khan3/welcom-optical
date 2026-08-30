@@ -15,9 +15,9 @@ const FONT = '"SF Pro Display", Arial, sans-serif'
 
 const SECTIONS = [
   { id: 'pb', label: 'PB', number: '01', gradient: 'linear-gradient(135deg, #0c0c13, #16161f 55%, #1e1b12)', img: visionImg, imgMobile: visionImgMobile },
-  { id: 'go', label: 'GO', number: '02', gradient: 'linear-gradient(135deg, #555be5, #aa6f7e, #e4752a)', img: newOutlook, imgMobile: newOutlookMobile },
+  { id: 'go', label: 'GO', number: '02', gradient: 'linear-gradient(135deg, #17171f, #22222c 55%, #28282d)', img: newOutlook, imgMobile: newOutlookMobile },
   { id: 'cb', label: 'CB', number: '03', gradient: 'linear-gradient(135deg, #8f6ba8, #6260dc)', img: ownYourLook, imgMobile: ownYourLookMobile },
-  { id: 'ax', label: 'AX', number: '04', gradient: 'linear-gradient(135deg, #ae201f, #d34726)', img: parelex4, imgMobile: mobilParelex },
+  { id: 'ax', label: 'AX', number: '04', gradient: 'linear-gradient(135deg, #16161d, #24242c)', img: parelex4, imgMobile: mobilParelex },
 ]
 
 function IntroHeader() {
