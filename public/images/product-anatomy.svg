@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <defs>
+    <linearGradient id="frameGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2a2a2a"/>
+      <stop offset="50%" stop-color="#1a1a1a"/>
+      <stop offset="100%" stop-color="#2a2a2a"/>
+    </linearGradient>
+    <linearGradient id="lensGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="rgba(120,160,200,0.08)"/>
+      <stop offset="100%" stop-color="rgba(80,120,160,0.03)"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Left temple arm -->
+  <path d="M105 190 Q60 188 20 185" stroke="#222" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <!-- Right temple arm -->
+  <path d="M695 190 Q740 188 780 185" stroke="#222" stroke-width="8" fill="none" stroke-linecap="round"/>
+
+  <!-- Left hinge -->
+  <rect x="96" y="182" width="18" height="16" rx="3" fill="#333" stroke="#444" stroke-width="1"/>
+  <!-- Right hinge -->
+  <rect x="686" y="182" width="18" height="16" rx="3" fill="#333" stroke="#444" stroke-width="1"/>
+
+  <!-- Left frame outer -->
+  <ellipse cx="260" cy="200" rx="145" ry="95" fill="none" stroke="url(#frameGrad)" stroke-width="12"/>
+  <!-- Right frame outer -->
+  <ellipse cx="540" cy="200" rx="145" ry="95" fill="none" stroke="url(#frameGrad)" stroke-width="12"/>
+
+  <!-- Left lens -->
+  <ellipse cx="260" cy="200" rx="133" ry="83" fill="url(#lensGrad)" stroke="rgba(150,180,210,0.12)" stroke-width="1"/>
+  <!-- Right lens -->
+  <ellipse cx="540" cy="200" rx="133" ry="83" fill="url(#lensGrad)" stroke="rgba(150,180,210,0.12)" stroke-width="1"/>
+
+  <!-- Lens reflection left -->
+  <ellipse cx="220" cy="170" rx="40" ry="18" fill="rgba(255,255,255,0.04)" transform="rotate(-15 220 170)"/>
+  <!-- Lens reflection right -->
+  <ellipse cx="500" cy="170" rx="40" ry="18" fill="rgba(255,255,255,0.04)" transform="rotate(-15 500 170)"/>
+
+  <!-- Bridge -->
+  <path d="M395 190 Q400 175 405 190" stroke="#2a2a2a" stroke-width="10" fill="none" stroke-linecap="round"/>
+</svg>
