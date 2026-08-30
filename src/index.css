@@ -878,8 +878,8 @@ main {
   z-index: 2;
   background: linear-gradient(
     135deg,
-    rgba(232, 145, 60, 0.5),
-    rgba(46, 107, 114, 0.5)
+    rgba(10, 12, 14, 0.45),
+    rgba(237, 231, 220, 0.28)
   );
   mix-blend-mode: overlay;
   will-change: opacity;
