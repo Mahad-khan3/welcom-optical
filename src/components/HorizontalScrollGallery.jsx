@@ -120,33 +120,14 @@ export default function HorizontalScrollGallery({ placement = 'primary' }) {
     <section className="hsg-section" ref={sectionRef}>
       <div className="hsg-pin" ref={pinRef}>
         <div className="hsg-left">
-          <span
-            className="lux-eyebrow"
-            style={{
-              color: 'var(--bg)',
-              background: 'var(--text)',
-              display: 'inline-block',
-              padding: '5px 12px',
-              letterSpacing: 3,
-              width: 'fit-content',
-            }}
-          >
+          <span className="lux-eyebrow hsg-eyebrow">
             {slider.eyebrow || 'Curated Moments'}
           </span>
           <h2>{slider.title || 'Experience Welcom'}</h2>
           {catSlug && (
             <Link
               to={placement === 'primary' ? '/premium-glasses' : `/shop?category=${catSlug}`}
-              className="hsg-link"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 8,
-                marginTop: 18,
-                textDecoration: 'none',
-                width: 'fit-content',
-                color: '#ffffff',
-              }}
+              className="hsg-link hsg-link-btn"
             >
               Explore {catName}
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -167,7 +148,12 @@ export default function HorizontalScrollGallery({ placement = 'primary' }) {
                       <div className="hsg-pimg">
                         {discount > 0 && <span className="badge">-{discount}%</span>}
                         {p.images?.[0] ? (
-                          <img src={p.images[0]} alt={p.name} loading="lazy" />
+                          <>
+                            <img src={p.images[0]} alt={p.name} loading="lazy" />
+                            {p.images?.[1] && (
+                              <img className="hsg-alt-img" src={p.images[1]} alt="" loading="lazy" />
+                            )}
+                          </>
                         ) : (
                           <div className="hsg-pimg-empty">
                             <Box size={42} />

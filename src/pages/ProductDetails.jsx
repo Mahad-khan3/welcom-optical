@@ -10,6 +10,7 @@ import ProductGrid from '../components/ProductGrid'
 import Loading from '../components/Loading'
 import ProductVideoStrip from '../components/ProductVideoStrip'
 import bannerDesktop1 from '../assets/images/Clearlyvision.png'
+import bannerMobile from '../assets/images/Clearlyvision mobile.png'
 import { formatCurrency, getErrorMessage } from '../utils/format'
 
 function SpinViewer({ images, name }) {
@@ -328,7 +329,15 @@ export default function ProductDetails() {
   const modelUrl = product.model || ''
 
   return (
-    <div className="container" style={{ paddingBottom: 90 }}>
+    <>
+      <section className="shop-banner">
+        <picture>
+          <source media="(max-width: 767px)" srcSet={bannerMobile} />
+          <img src={bannerDesktop1} alt="Welcom Optical banner" loading="lazy" />
+        </picture>
+      </section>
+
+      <div className="container" style={{ paddingBottom: 90 }}>
       <div className="breadcrumb">
         <Link to="/">Home</Link>
         <span className="sep">/</span>
@@ -430,8 +439,6 @@ export default function ProductDetails() {
               <Zap size={18} />
               {outOfStock ? 'Out of stock' : 'Buy Now'}
             </button>
-
-            <img src={bannerDesktop1} alt="Welcom Optical" className="pd-banner" />
 
             <ProductVideoStrip />
           </div>
@@ -636,6 +643,7 @@ export default function ProductDetails() {
           </div>
         </div>
       )}
-    </div>
+      </div>
+    </>
   )
 }

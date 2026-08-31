@@ -7,6 +7,8 @@ import ProductGrid from '../components/ProductGrid'
 import Loading from '../components/Loading'
 import SearchBar from '../components/SearchBar'
 import CollectionBanner from '../components/CollectionBanner'
+import bannerDesktop from '../assets/images/Clearlyvision.png'
+import bannerMobile from '../assets/images/Clearlyvision mobile.png'
 import newOutlook from '../assets/images/the new outlok.png'
 
 const CATEGORY_BANNER_FALLBACKS = {
@@ -105,6 +107,13 @@ export default function Shop() {
 
   return (
     <div style={{ paddingBottom: 80 }}>
+      <section className="shop-banner">
+        <picture>
+          <source media="(max-width: 767px)" srcSet={bannerMobile} />
+          <img src={bannerDesktop} alt="Welcom Optical banner" loading="lazy" />
+        </picture>
+      </section>
+
       {activeCategory ? (
         <CollectionBanner category={activeCategory} image={categoryBannerImage(activeCategory)} plain />
       ) : (

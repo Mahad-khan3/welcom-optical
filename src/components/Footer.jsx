@@ -201,7 +201,7 @@ export default function Footer() {
             <p className="footer-copy">
               &copy; 2026, WELCOM OPTICAL. All rights reserved.
             </p>
-            <p className="footer-made">Made by Connexus</p>
+            <p className="footer-made">Made by Mahad Khan</p>
           </div>
         </div>
 

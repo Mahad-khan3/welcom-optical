@@ -17,7 +17,7 @@ export default function ProductVideoStrip() {
     videoService
       .getActive()
       .then((res) => {
-        if (alive) setVideos((res.data.videos?.videos || []).filter((v) => v.video))
+        if (alive) setVideos((res.data.videos?.videos || []).filter((v) => v.video).slice(0, 3))
       })
       .catch(() => {})
     return () => {
